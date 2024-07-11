@@ -1,17 +1,26 @@
-INCLUDEDIR := /usr/include
-LIBDIR := /usr/lib
-all: libllist.so
+LIB_DIR:=lib
+ADDRESSBOOK_DIR:=src
+AddressBook:=$(ADDRESSBOOK_DIR)/$(BIN)
 
-libllist.so: llist.c
-	gcc -shared -o libllist.so llist.c
+.PHONY: all clean install uninstall $(LIB_DIR)/$(TARGET)
 
-install: libllist.so
-	install -D -m 644 llist.h $(INCLUDEDIR)/llist.h
-	install -D -m 755 libllist.so $(LIBDIR)/libllist.so
+all: $(LIB_DIR)/$(TARGET) $(AddressBook)
 
-uninstall:
-	rm -f $(INCLUDEDIR)/llist.h
-	rm -f $(LIBDIR)/libllist.so
+$(LIB_DIR)/$(TARGET):
+	$(MAKE) -C $(LIB_DIR)
+	$(MAKE) -C $(LIB_DIR) install
+
+$(AddressBook): $(LIB_DIR)/$(TARGET)
+	$(MAKE) -C $(ADDRESSBOOK_DIR)
+
+install: $(LIB_DIR)/$(TARGET)
+	$(MAKE) -C $(LIB_DIR) install
+	$(MAKE) -C $(ADDRESSBOOK_DIR) install
+
+uninstall: $(LIB_DIR)/$(TARGET)
+	$(MAKE) -C $(LIB_DIR) uninstall
+	$(MAKE) -C $(ADDRESSBOOK_DIR) uninstall
 
 clean:
-	rm -f libllist.so
+	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(ADDRESSBOOK_DIR) clean
