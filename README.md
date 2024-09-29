@@ -12,7 +12,6 @@ This repository contains a simple implementation of a singly linked list in C. T
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Function Overview](#function-overview)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -21,19 +20,22 @@ This repository contains a simple implementation of a singly linked list in C. T
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/linked-list.git
+git clone https://github.com/n4tas/linked-list.git
 ```
 
-Include the `linked_list.h` header file in your project:
+Build, install and include the library:
 
+``make``
+
+``sudo make install``
 ```c
-#include "linked_list.h"
+#include <linked_list.h>
 ```
 
 Compile your code with the appropriate flags for your compiler. For example:
 
 ```bash
-gcc -o your_program your_program.c linked_list.c
+gcc -o Program main.c -llinked_list
 ```
 
 ## Usage
@@ -46,7 +48,7 @@ gcc -o your_program your_program.c linked_list.c
 Example usage:
 
 ```c
-#include "linked_list.h"
+#include <linked_list.h>
 
 int main() {
     Node *head = NULL;
@@ -71,75 +73,6 @@ int main() {
     return 0;
 }
 ```
-
-## Function Overview
-
-### `Node *create_node(void *data)`
-Creates a new node and allocates memory for it.
-
-- **Parameters**:  
-  - `data`: Pointer to the data you want to store in the node.
-  
-- **Returns**:  
-  Pointer to the newly created node.
-
-### `void add_to_list(Node **head, Node *node)`
-Adds a node to the end of the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the pointer of the linked list's head.  
-  - `node`: Pointer to the new node to be added.
-
-### `void insert_to_list(Node **head, Node *node, __uint16_t pos)`
-Inserts a node at the specified position in the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the pointer of the linked list's head.  
-  - `node`: Pointer to the new node to be inserted.  
-  - `pos`: Position (0-based) where the node should be inserted.
-
-### `void print_list(Node **head)`
-Prints all the elements of the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the pointer of the linked list's head.
-
-### `void delete_list(Node *head)`
-Frees all nodes in the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the head of the linked list.
-
-### `void delete_node(Node **head, __uint16_t pos)`
-Deletes a node from the linked list at the specified position.
-
-- **Parameters**:  
-  - `head`: Pointer to the pointer of the linked list's head.  
-  - `pos`: Position (0-based) of the node to be deleted.
-
-### `void *find_node(Node **head, __uint16_t pos)`
-Finds and returns the data at the specified position in the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the pointer of the linked list's head.  
-  - `pos`: Position (0-based) of the node.
-
-- **Returns**:  
-  Pointer to the data stored in the node at the given position.
-
-### `__uint16_t node_count(Node *head)`
-Calculates and returns the number of nodes in the linked list.
-
-- **Parameters**:  
-  - `head`: Pointer to the head of the linked list.
-
-- **Returns**:  
-  The number of nodes in the linked list.
-
 ## Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. All contributions, from bug fixes to feature enhancements, are welcome!
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
