@@ -68,7 +68,7 @@ int main() {
     print_list(&head);
     
     // Clean up memory
-    delete_list(head);
+    delete_list(&head);
     
     return 0;
 }
